@@ -9,16 +9,16 @@ public class onQuitEvent implements Listener {
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent e){
         Main main = Main.getPlugin(Main.class);
-        if(main.premium_queue_pos.containsKey(e.getPlayer())){
-            main.premium_queue_pos.remove(e.getPlayer());
+        if(main.premium_queue_pos.containsKey(e.getPlayer().getName())){
+            main.premium_queue_pos.remove(e.getPlayer().getName());
             for (Integer o: main.premium_queue_pos.values()) {
-                main.premium_queue_pos.replace(e.getPlayer(), o-1);
+                main.premium_queue_pos.replace(e.getPlayer().getName(), o-1);
             }
         }
-        if(main.normal_queue_pos.containsKey(e.getPlayer())){
-            main.normal_queue_pos.remove(e.getPlayer());
+        if(main.normal_queue_pos.containsKey(e.getPlayer().getName())){
+            main.normal_queue_pos.remove(e.getPlayer().getName());
             for (Integer o: main.normal_queue_pos.values()) {
-                main.normal_queue_pos.replace(e.getPlayer(), o-1);
+                main.normal_queue_pos.replace(e.getPlayer().getName(), o-1);
             }
         }
     }

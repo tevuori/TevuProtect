@@ -14,7 +14,6 @@ public class firstsetup {
 
         wc.environment(World.Environment.NORMAL);
         wc.type(WorldType.FLAT);
-        wc.generatorSettings("2;0;1;");
 
         wc.createWorld();
     }

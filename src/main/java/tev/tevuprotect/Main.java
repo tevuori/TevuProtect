@@ -1,9 +1,11 @@
 package tev.tevuprotect;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import tev.tevuprotect.opkeylogin.onChatEvent;
 import tev.tevuprotect.opkeylogin.onFirstJoin;
 import tev.tevuprotect.opkeylogin.onMoveEvent;
@@ -15,8 +17,8 @@ import java.util.*;
 
 public final class Main extends JavaPlugin {
     public List<String> notcompletedplayers = new ArrayList<>();
-    public Map<Player, Integer> normal_queue_pos = new HashMap<>();
-    public Map<Player, Integer> premium_queue_pos = new HashMap<>();
+    public Map<String, Integer> normal_queue_pos = new HashMap<>();
+    public Map<String, Integer> premium_queue_pos = new HashMap<>();
     @Override
     public void onEnable() {
         loadConfig();
@@ -27,13 +29,20 @@ public final class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new onMoveEvent(), this);
         }
         //queue
-        if(Bukkit.getWorld("queue_world") != null){
+        if(Bukkit.getWorld("queue_world") == null){
             firstsetup.run();
         }
         if(getConfig().getBoolean("queue.enabled")){
+            System.out.println(ChatColor.GOLD + "Enabled");
             getServer().getPluginManager().registerEvents(new onJoinEvent(), this);
             getServer().getPluginManager().registerEvents(new onQuitEvent(), this);
         }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                System.out.println(normal_queue_pos);
+            }
+        }.runTaskTimerAsynchronously(this, 10,10);
     }
 
     @Override
