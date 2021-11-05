@@ -1,0 +1,12 @@
+firstsetup: false # dont edit
+queue:
+  enabled: false
+  premium_queue: false
+  permission: "tv.premium" #Has priority queue
+  admin_permission: "*" #Skips queue
+  world_to_teleport: "world"
+  max_players: 1
+login: #Login security with
+  enabled: true
+premium_key_enabled: true #If you want to have op with new account (on testing servers)
+premium_key: "Ksd5A18712SF" #Key for activating op on first login

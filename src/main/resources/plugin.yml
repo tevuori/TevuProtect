@@ -1,0 +1,8 @@
+name: TevuProtect
+version: '${project.version}'
+main: tev.tevuprotect.Main
+api-version: 1.16
+prefix: [ TevuProtect ]
+authors: [ Tevuori ]
+description: This plugin is used mainly on Beegames.eu servers to protect network.
+website: tevuori.eu
