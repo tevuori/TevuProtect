@@ -41,8 +41,8 @@ public final class Main extends JavaPlugin {
 
     }
     public void loadConfig(){
+        getConfig().options().copyDefaults(true);
         saveConfig();
-        reloadConfig();
     }
 
 }

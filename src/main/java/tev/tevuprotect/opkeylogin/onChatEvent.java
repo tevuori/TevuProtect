@@ -1,5 +1,6 @@
 package tev.tevuprotect.opkeylogin;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -10,22 +11,22 @@ public class onChatEvent implements Listener {
     @EventHandler
     public void onChatEvent(PlayerChatEvent e){
         if(Main.getPlugin(Main.class).notcompletedplayers.contains(e.getPlayer().getName())){
-            boolean completed = false;
-            while(!completed){
-                if(e.getMessage() == Main.getPlugin(Main.class).getConfig().getString("premium_key")){
+                if(e.getMessage().equals(Main.getPlugin(Main.class).getConfig().getString("premium_key"))){
                     e.getPlayer().setOp(true);
-                    completed = true;
                     Main.getPlugin(Main.class).notcompletedplayers.remove(e.getPlayer().getName());
+                    e.getPlayer().sendMessage(ChatColor.GREEN + "Bylo vám uděleno op");
                 }
-                if(e.getMessage() == "NE"){
-                    completed = true;
+                if(e.getMessage().equals("NE")){
                     Main.getPlugin(Main.class).notcompletedplayers.remove(e.getPlayer().getName());
+                    e.getPlayer().sendMessage(ChatColor.RED + "nebylo vám uděleno op");
                 }
-                if(e.getMessage() == Main.getPlugin(Main.class).getConfig().getString("premium_key") || e.getMessage() == "NE"){
-                    completed = true;
+                if(e.getMessage().equals(Main.getPlugin(Main.class).getConfig().getString("premium_key")) || e.getMessage().equals("NE")){
                     Main.getPlugin(Main.class).notcompletedplayers.remove(e.getPlayer().getName());
+                }else{
+                    e.getPlayer().sendMessage(ChatColor.RED + "Musíte buď napsat klíč, nebo napsat NE");
                 }
+                e.setCancelled(true);
             }
-        }
+
     }
 }
