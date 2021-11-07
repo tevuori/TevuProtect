@@ -29,7 +29,7 @@ public final class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new onMoveEvent(), this);
         }
         //queue
-        if(Bukkit.getWorld("queue_world") == null){
+        /*if(Bukkit.getWorld("queue_world") == null){
             firstsetup.run();
         }
         if(getConfig().getBoolean("queue.enabled")){
@@ -43,6 +43,7 @@ public final class Main extends JavaPlugin {
                 System.out.println(normal_queue_pos);
             }
         }.runTaskTimerAsynchronously(this, 10,10);
+        */
     }
 
     @Override
